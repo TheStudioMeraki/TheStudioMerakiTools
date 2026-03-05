@@ -14,6 +14,17 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://tools.thestudiomeraki.com/theo" />
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P9K2378P4K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P9K2378P4K');
+  </script>
+
+  <meta name="google-site-verification" content="g3LcetrXTVLQ5l1nQUQWJ5fU7dnH8_qwTk7UiiCUYBo" />
+
   <!-- ═══════════════════════════════════════════════════════
        OPEN GRAPH (Facebook, LinkedIn, Pinterest, Showit shares)
   ════════════════════════════════════════════════════════ -->
@@ -487,6 +498,24 @@
   </style>
 </head>
 <body>
+
+<!-- ── Mobile screen notice ── -->
+<div id="mobile-notice" style="display:none;position:fixed;inset:0;z-index:9999;background:#0e0b0d;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;font-family:'DM Sans',system-ui,sans-serif;">
+  <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2.4rem;font-weight:400;line-height:1;background:linear-gradient(120deg,#f0e8ec 0%,#e8a8bc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;">Theo</div>
+  <p style="font-size:1rem;font-weight:500;color:#f0e8ec;margin-bottom:16px;line-height:1.4;">Theo works best on a larger screen.</p>
+  <p style="font-size:0.875rem;color:#7a6070;line-height:1.7;max-width:320px;">This tool lets you style individual words and preview CSS in real time, so for the best experience please open Theo on a desktop or tablet.</p>
+  <p style="margin-top:28px;font-size:0.95rem;color:#e8a8bc;">Theo will be waiting for you there ✨</p>
+</div>
+
+<script>
+  (function(){
+    if(window.innerWidth < 768){
+      var el = document.getElementById('mobile-notice');
+      el.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+  })();
+</script>
 <datalist id="google-fonts-list"></datalist>
 
 <div class="app">
