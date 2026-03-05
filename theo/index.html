@@ -500,21 +500,81 @@
 <body>
 
 <!-- ── Mobile screen notice ── -->
-<div id="mobile-notice" style="display:none;position:fixed;inset:0;z-index:9999;background:#0e0b0d;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;font-family:'DM Sans',system-ui,sans-serif;">
+<style>
+  #mobile-notice { display: none; }
+  #bookmark-btn {
+    position: relative;
+    margin-top: 32px;
+    background: transparent;
+    border: 1px solid #2e2028;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #e8a8bc;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  #bookmark-btn:hover { border-color: #e8a8bc; background: rgba(232,168,188,0.06); }
+  #bookmark-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1318;
+    border: 1px solid #2e2028;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.72rem;
+    color: #7a6070;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  #bookmark-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #2e2028;
+  }
+  #bookmark-btn:hover #bookmark-tooltip { opacity: 1; }
+</style>
+
+<div id="mobile-notice" style="position:fixed;inset:0;z-index:9999;background:#0e0b0d;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;font-family:'DM Sans',system-ui,sans-serif;">
   <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2.4rem;font-weight:400;line-height:1;background:linear-gradient(120deg,#f0e8ec 0%,#e8a8bc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;">Theo</div>
   <p style="font-size:1rem;font-weight:500;color:#f0e8ec;margin-bottom:16px;line-height:1.4;">Theo works best on a larger screen.</p>
-  <p style="font-size:0.875rem;color:#7a6070;line-height:1.7;max-width:320px;">This tool lets you style individual words and preview CSS in real time, so for the best experience please open Theo on a desktop or tablet.</p>
-  <p style="margin-top:28px;font-size:0.95rem;color:#e8a8bc;">Theo will be waiting for you there ✨</p>
+  <p style="font-size:0.875rem;color:#7a6070;line-height:1.7;max-width:300px;">This tool lets you style individual words and preview CSS in real time — for the best experience, open Theo on a desktop or tablet.</p>
+  <p style="margin-top:24px;font-size:0.95rem;color:#e8a8bc;">Theo will be waiting for you there ✨</p>
+  <p style="margin-top:20px;font-size:0.78rem;color:#7a6070;">P.S. If you found this tool useful, bookmark it so you can find it easily next time.</p>
+  <button id="bookmark-btn" onclick="bookmarkPage()">
+    ☆ Bookmark Theo
+    <span id="bookmark-tooltip">Press ⌘+D on Mac · Ctrl+D on Windows</span>
+  </button>
 </div>
 
 <script>
   (function(){
-    if(window.innerWidth < 768){
+    if(window.innerWidth < 1024){
       var el = document.getElementById('mobile-notice');
       el.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
   })();
+  function bookmarkPage(){
+    if(window.sidebar && window.sidebar.addPanel){
+      window.sidebar.addPanel(document.title, window.location.href, '');
+    } else {
+      var tooltip = document.getElementById('bookmark-tooltip');
+      tooltip.style.opacity = '1';
+      setTimeout(function(){ tooltip.style.opacity = ''; }, 2500);
+    }
+  }
 </script>
 <datalist id="google-fonts-list"></datalist>
 
